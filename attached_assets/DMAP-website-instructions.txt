@@ -1,0 +1,175 @@
+Project Overview
+Develop a fast, professional, and highly responsive website for a construction company specializing in retrofitting and reconstruction of government buildings and structures. The website should create a technically sound impression for contractors and site engineers while maintaining a clean, simple, and easy-to-navigate UI.
+
+The website will be monolithic (for now) and will be static with no database. The tech stack should be React (for frontend) + Nginx (for hosting static files). It should be optimized for mobile and desktop devices.
+
+1. Pages & Layout
+1.1. Landing Page (Homepage)
+A simple, professional, and minimal design.
+
+Top Navigation Bar with links to:
+
+Home
+
+About Us
+
+Services
+
+Projects & Case Studies
+
+Blog
+
+Contact
+
+Hero Section with:
+
+A high-quality background image relevant to construction.
+
+A professional tagline emphasizing technical expertise and reliability.
+
+A "Learn More" button linking to the About Us page.
+
+Brief Overview of Services (Clickable cards leading to Services page).
+
+3-4 Testimonials from industry professionals (rotating or fixed).
+
+Certifications Section (if available).
+
+Downloadable PDF Brochure button.
+
+1.2. About Us Page
+Company Overview
+
+Business is ~5 years old, registered under the user's mom’s name.
+
+The father is the key negotiator and operator but cannot be openly presented as the face of the company.
+
+Small team, mainly relying on technical contractors.
+
+Operations and execution are largely handled by the father.
+
+Our Approach
+
+Emphasis on collaboration with experienced professionals.
+
+Commitment to quality, safety, and compliance.
+
+Leadership Team (Without Names)
+
+A general description of expertise and industry experience.
+
+1.3. Services Page
+A grid layout of expandable cards for different services.
+
+Clicking a card expands it to show a brief description.
+
+Research required for icons vs. text-based approach (Icons might not exist for every technical service).
+
+Each service should have a "Learn More" option.
+
+1.4. Projects & Case Studies Page
+Showcases Work-in-Progress and Completed Projects.
+
+Work-in-Progress section:
+
+On-site images with captions.
+
+Completed Projects section:
+
+Brief note on key services performed.
+
+Before-and-after images may be limited, but this will be improved in future operations.
+
+1.5. Blog Page (Technical Insights Section)
+Simple list format:
+
+Title + Short Summary + "Read More" Button.
+
+Blog content will be AI-generated with moderation.
+
+Layout should be short, simple, and clean.
+
+No database for now; use static Markdown files or JSON for content storage.
+
+1.6. Testimonials & Certifications Page
+3-4 Testimonials from reputable industry professionals.
+
+Certifications (if available) to be listed for credibility.
+
+Testimonials may also be shown on the landing page.
+
+1.7. Contact Page
+Company Address (if applicable).
+
+Email & Phone Number.
+
+Simple Contact Form with:
+
+Name
+
+Email
+
+Message
+
+Submit Button
+
+No backend storage for now; form submissions can be handled using email forwarding.
+
+2. Key Features & Technical Requirements
+2.1. UI/UX Considerations
+Fast and responsive UI with a focus on mobile and desktop compatibility.
+
+Smooth animations but no excessive hover effects (ensuring usability on mobile).
+
+Minimalistic, professional color scheme.
+
+2.2. Performance Optimization
+Static React build hosted using Nginx.
+
+Lazy loading for images.
+
+Optimized fonts and assets.
+
+2.3. Deployment & Hosting
+Hosted on a VPS with Nginx serving the static files.
+
+Manual deployment at first, with CI/CD added later.
+
+No database required for MVP.
+
+2.4. PDF Brochure
+Static manually created PDF brochure (for now).
+
+Button to download PDF directly from the website.
+
+Future scope: Auto-generate PDF from website using Puppeteer (Node.js).
+
+3. Tech Stack
+Frontend: React (Mainstream, well-documented for AI-generated code).
+
+Hosting: Nginx on VPS.
+
+Deployment: Manual first, later CI/CD with GitHub Actions.
+
+Data Storage: Static JSON / Markdown (No database for MVP).
+
+Performance Optimization:
+
+Code splitting
+
+Image optimization
+
+Server-side caching with Nginx
+
+Final Instructions for AI Code Generation
+Ensure that the entire website is a static React application (CSR or SSR if needed for SEO).
+
+Do not include unnecessary backend logic unless explicitly required.
+
+Ensure that the layout adapts well to both mobile and desktop devices.
+
+All images and static assets should be optimized for fast loading times.
+
+Keep the structure modular, so features can be expanded easily later.
+
+Follow the provided architecture strictly.
