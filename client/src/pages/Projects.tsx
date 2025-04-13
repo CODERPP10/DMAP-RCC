@@ -1,10 +1,66 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
-import { ongoingProjects, completedProjects } from "@/data/projects";
+import { useQuery } from "@tanstack/react-query";
 import ProjectCard from "@/components/projects/ProjectCard";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
+/**
+ * Projects page component
+ * Displays ongoing and completed construction projects
+ */
 const Projects = () => {
+  // Active tab state
   const [activeTab, setActiveTab] = useState<"ongoing" | "completed">("ongoing");
+
+  // Define API response type
+  interface ApiResponse {
+    success: boolean;
+    data: Array<{
+      id: number;
+      title: string;
+      shortDescription: string;
+      fullDescription?: string;
+      imageUrl?: string;
+      completion?: string;
+      location?: string;
+      client?: string;
+      status: string;
+      services?: string[];
+      createdAt: string;
+      updatedAt: string;
+    }>;
+  }
+
+  // Fetch projects from API
+  const { data, isLoading, error } = useQuery<ApiResponse>({
+    queryKey: ['/api/projects'],
+    refetchOnWindowFocus: false
+  });
+
+  // Filter projects by status
+  const ongoingProjects = data?.data?.filter(project => 
+    project.status === 'ongoing' || project.completion === 'In Progress'
+  ) || [];
+
+  const completedProjects = data?.data?.filter(project => 
+    project.status === 'completed' || project.completion === 'Completed'
+  ) || [];
+
+  // Format projects for the ProjectCard component
+  const formatProjectsForUI = (projects: any[]) => {
+    return projects.map(project => ({
+      id: String(project.id), // Convert to string to match ProjectCard interface
+      title: project.title,
+      shortDescription: project.shortDescription,
+      fullDescription: project.fullDescription || `Details about ${project.title} project.`,
+      imageUrl: project.imageUrl || "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3",
+      completion: project.completion || (project.status === 'completed' ? 'Completed' : 'In Progress'),
+      location: project.location || 'Maharashtra, India',
+      services: project.services || ['Structural Strengthening', 'Retrofitting'],
+      client: project.client || 'DMAP Construction Client'
+    }));
+  };
 
   return (
     <>
@@ -50,31 +106,61 @@ const Projects = () => {
 
           {/* Projects Grid */}
           <div className="mb-12">
-            <div className={activeTab === "ongoing" ? "block" : "hidden"}>
+            {/* Loading state */}
+            {isLoading && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {ongoingProjects.map((project) => (
-                  <ProjectCard key={project.id} project={project} status="ongoing" />
+                {[1, 2, 3, 4, 5, 6].map((i) => (
+                  <div key={i} className="border border-gray-200 rounded-lg p-6">
+                    <Skeleton className="h-8 w-3/4 mb-4" />
+                    <Skeleton className="h-24 w-full mb-4" />
+                    <Skeleton className="h-4 w-full mb-2" />
+                    <Skeleton className="h-4 w-5/6 mb-2" />
+                    <Skeleton className="h-4 w-4/6" />
+                  </div>
                 ))}
               </div>
-              {ongoingProjects.length === 0 && (
-                <div className="text-center py-16">
-                  <p className="text-gray-500">No ongoing projects at the moment.</p>
-                </div>
-              )}
-            </div>
+            )}
 
-            <div className={activeTab === "completed" ? "block" : "hidden"}>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {completedProjects.map((project) => (
-                  <ProjectCard key={project.id} project={project} status="completed" />
-                ))}
-              </div>
-              {completedProjects.length === 0 && (
-                <div className="text-center py-16">
-                  <p className="text-gray-500">No completed projects to display yet.</p>
+            {/* Error state */}
+            {error && (
+              <Alert variant="destructive" className="mb-8">
+                <AlertTitle>Error</AlertTitle>
+                <AlertDescription>
+                  There was a problem loading the projects. Please try again later.
+                </AlertDescription>
+              </Alert>
+            )}
+
+            {/* Loaded state */}
+            {data && (
+              <>
+                <div className={activeTab === "ongoing" ? "block" : "hidden"}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {formatProjectsForUI(ongoingProjects).map((project) => (
+                      <ProjectCard key={project.id} project={project} status="ongoing" />
+                    ))}
+                  </div>
+                  {ongoingProjects.length === 0 && (
+                    <div className="text-center py-16">
+                      <p className="text-gray-500">No ongoing projects at the moment.</p>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
+
+                <div className={activeTab === "completed" ? "block" : "hidden"}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {formatProjectsForUI(completedProjects).map((project) => (
+                      <ProjectCard key={project.id} project={project} status="completed" />
+                    ))}
+                  </div>
+                  {completedProjects.length === 0 && (
+                    <div className="text-center py-16">
+                      <p className="text-gray-500">No completed projects to display yet.</p>
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
           </div>
 
           {/* Project Process */}
