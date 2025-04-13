@@ -13,8 +13,21 @@ const Services = () => {
   // State to track which service card is expanded
   const [expandedService, setExpandedService] = useState<number | null>(null);
 
+  // Define response type
+  interface ApiResponse {
+    success: boolean;
+    data: Array<{
+      id: number;
+      title: string;
+      shortDescription?: string;
+      fullDescription?: string;
+      imageUrl?: string;
+      benefits?: string[];
+    }>;
+  }
+
   // Fetch services from API
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error } = useQuery<ApiResponse>({
     queryKey: ['/api/services'],
     refetchOnWindowFocus: false
   });

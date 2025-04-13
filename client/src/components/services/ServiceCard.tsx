@@ -1,16 +1,22 @@
-import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
+/**
+ * Service interface reflecting the structure expected by the UI
+ * This may differ slightly from the database model
+ */
 interface Service {
-  id: string;
+  id: number | string; // Support both string and number IDs for flexibility
   title: string;
-  shortDescription: string;
-  fullDescription: string;
-  imageUrl: string;
-  benefits: string[];
+  shortDescription?: string;
+  fullDescription?: string;
+  imageUrl?: string;
+  benefits?: string[];
 }
 
+/**
+ * Props for the ServiceCard component
+ */
 interface ServiceCardProps {
   service: Service;
   isExpanded: boolean;
@@ -20,7 +26,7 @@ interface ServiceCardProps {
 const ServiceCard = ({ service, isExpanded, onExpand }: ServiceCardProps) => {
   return (
     <div 
-      id={service.id}
+      id={`service-${service.id}`}
       className="service-card bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg"
     >
       <div className="h-48 bg-gray-200 relative overflow-hidden">
@@ -45,9 +51,9 @@ const ServiceCard = ({ service, isExpanded, onExpand }: ServiceCardProps) => {
               className="overflow-hidden"
             >
               <div className="mt-4 pt-4 border-t border-gray-200">
-                <p className="text-gray-600 mb-4">{service.fullDescription}</p>
+                <p className="text-gray-600 mb-4">{service.fullDescription || `Detailed information about our ${service.title} services.`}</p>
                 
-                {service.benefits.length > 0 && (
+                {service.benefits && service.benefits.length > 0 && (
                   <div className="mt-4">
                     <h4 className="font-semibold text-[var(--primary-700)] mb-2">Key Benefits:</h4>
                     <ul className="list-disc pl-5 space-y-1">
