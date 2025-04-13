@@ -1,12 +1,26 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
-import { services } from "@/data/services";
+import { useQuery } from "@tanstack/react-query";
 import ServiceCard from "@/components/services/ServiceCard";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
+/**
+ * Services page component
+ * Displays all available services with expandable cards
+ */
 const Services = () => {
-  const [expandedService, setExpandedService] = useState<string | null>(null);
+  // State to track which service card is expanded
+  const [expandedService, setExpandedService] = useState<number | null>(null);
 
-  const handleServiceExpand = (id: string) => {
+  // Fetch services from API
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['/api/services'],
+    refetchOnWindowFocus: false
+  });
+
+  // Handle service card expansion toggle
+  const handleServiceExpand = (id: number) => {
     if (expandedService === id) {
       setExpandedService(null);
     } else {
@@ -14,10 +28,22 @@ const Services = () => {
     }
   };
 
+  // Format services for the ServiceCard component
+  const formatServicesForUI = (serviceData: any) => {
+    return serviceData.map((service: any) => ({
+      id: service.id,
+      title: service.title,
+      shortDescription: service.shortDescription || `Professional ${service.title.toLowerCase()} services`,
+      fullDescription: service.fullDescription || `Our ${service.title.toLowerCase()} services are delivered with the highest standards of quality and safety.`,
+      imageUrl: service.imageUrl || "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3",
+      benefits: service.benefits || ["Quality assurance", "Expert technical team", "Cost-effective solutions"]
+    }));
+  };
+
   return (
     <>
       <Helmet>
-        <title>Services - DMAP Construction</title>
+        <title>Services - DMAP Retrofit Construction Company</title>
         <meta name="description" content="Our specialized retrofitting and reconstruction services for government buildings" />
       </Helmet>
 
@@ -30,16 +56,44 @@ const Services = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {services.map((service) => (
-              <ServiceCard 
-                key={service.id}
-                service={service}
-                isExpanded={expandedService === service.id}
-                onExpand={() => handleServiceExpand(service.id)}
-              />
-            ))}
-          </div>
+          {/* Loading state */}
+          {isLoading && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={i} className="border border-gray-200 rounded-lg p-6">
+                  <Skeleton className="h-8 w-3/4 mb-4" />
+                  <Skeleton className="h-24 w-full mb-4" />
+                  <Skeleton className="h-4 w-full mb-2" />
+                  <Skeleton className="h-4 w-5/6 mb-2" />
+                  <Skeleton className="h-4 w-4/6" />
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Error state */}
+          {error && (
+            <Alert variant="destructive" className="mb-8">
+              <AlertTitle>Error</AlertTitle>
+              <AlertDescription>
+                There was a problem loading the services. Please try again later.
+              </AlertDescription>
+            </Alert>
+          )}
+
+          {/* Loaded state */}
+          {data && data.data && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+              {formatServicesForUI(data.data).map((service: any) => (
+                <ServiceCard 
+                  key={service.id}
+                  service={service}
+                  isExpanded={expandedService === service.id}
+                  onExpand={() => handleServiceExpand(service.id)}
+                />
+              ))}
+            </div>
+          )}
 
           <div className="bg-white rounded-lg shadow-md p-8 mb-16">
             <h2 className="text-3xl font-bold text-[var(--primary-800)] mb-6 text-center">Our Service Approach</h2>
