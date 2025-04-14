@@ -147,7 +147,7 @@ const ContactSection = () => {
                   <span className="text-[var(--secondary-600)] mt-1 mr-3"><i className="fas fa-map-marker-alt"></i></span>
                   <div>
                     <p className="font-medium">Our Office</p>
-                    <p className="text-gray-600">123 Construction Avenue, Suite 400<br />Metropolis, CA 90001</p>
+                    <p className="text-gray-600">201 , 29 Rustom Building, Veer Nariman Road Fort Mumbai ‐400023 </p>
                   </div>
                 </div>
                 
@@ -155,7 +155,7 @@ const ContactSection = () => {
                   <span className="text-[var(--secondary-600)] mt-1 mr-3"><i className="fas fa-envelope"></i></span>
                   <div>
                     <p className="font-medium">Email Us</p>
-                    <p className="text-gray-600">projects@dmapconstruction.com</p>
+                    <p className="text-gray-600">dmaprccmum@gmail.com</p>
                   </div>
                 </div>
                 
@@ -163,7 +163,7 @@ const ContactSection = () => {
                   <span className="text-[var(--secondary-600)] mt-1 mr-3"><i className="fas fa-phone-alt"></i></span>
                   <div>
                     <p className="font-medium">Call Us</p>
-                    <p className="text-gray-600">(555) 123-4567</p>
+                    <p className="text-gray-600">+91 9136994232</p>
                   </div>
                 </div>
               </div>
@@ -172,7 +172,7 @@ const ContactSection = () => {
             <div className="bg-gray-200 h-64 rounded-lg overflow-hidden">
               {/* Using iframe for Google Maps embed */}
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7152203584424!2d-118.24304388430832!3d34.05372438060642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c64e00d2a997%3A0x445d9f45f0d992cd!2sLos%20Angeles%20City%20Hall!5e0!3m2!1sen!2sus!4v1677723238079!5m2!1sen!2sus" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235.87414092539964!2d72.83290969624501!3d18.93200253514945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7d1dcb04b79c5%3A0x7eac716283cf984d!2sRustom%20Building%2C%20Veer%20Nariman%20Rd%2C%20Kala%20Ghoda%2C%20Fort%2C%20Mumbai%2C%20Maharashtra%20400001!5e0!3m2!1sen!2sin!4v1744634052984!5m2!1sen!2sin" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }}

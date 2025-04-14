@@ -8,7 +8,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">DMAP Construction</h3>
             <p className="text-gray-400 mb-4">
-              Specialized retrofitting and reconstruction for government buildings and structures.
+            Experts in Retrofitting, Reconstruction & Civil Works
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-white transition">
@@ -51,15 +51,15 @@ const Footer = () => {
             <ul className="space-y-2">
               <li className="flex items-start">
                 <span className="text-[var(--secondary-600)] mt-1 mr-2"><i className="fas fa-map-marker-alt"></i></span>
-                <span className="text-gray-400">123 Construction Avenue, Suite 400, Metropolis, CA 90001</span>
+                <span className="text-gray-400">201 , 29 Rustom Building, Veer Nariman Road Fort Mumbai ‐400023 </span>
               </li>
               <li className="flex items-start">
                 <span className="text-[var(--secondary-600)] mt-1 mr-2"><i className="fas fa-envelope"></i></span>
-                <span className="text-gray-400">projects@dmapconstruction.com</span>
+                <span className="text-gray-400">dmaprccmum@gmail.com</span>
               </li>
               <li className="flex items-start">
                 <span className="text-[var(--secondary-600)] mt-1 mr-2"><i className="fas fa-phone-alt"></i></span>
-                <span className="text-gray-400">(555) 123-4567</span>
+                <span className="text-gray-400">+91 9136994232</span>
               </li>
             </ul>
           </div>
