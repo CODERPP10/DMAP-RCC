@@ -1,17 +1,17 @@
 const Certifications = () => {
   const certifications = [
-    { id: "cert1", name: "LEED Certified", icon: "fas fa-certificate" },
-    { id: "cert2", name: "OSHA Compliant", icon: "fas fa-hard-hat" },
-    { id: "cert3", name: "ABC Member", icon: "fas fa-building" },
-    { id: "cert4", name: "Energy Star", icon: "fas fa-leaf" },
-    { id: "cert5", name: "ASCE Member", icon: "fas fa-cogs" },
+    { id: "cert1", name: "GST Compliant", icon: "fas fa-certificate" },
+    { id: "cert2", name: "EPF Compliant", icon: "fas fa-hard-hat" },
+    { id: "cert3", name: "MSME Registered", icon: "fas fa-building" },
+    { id: "cert4", name: "Safety Focused", icon: "fas fa-leaf" },
+    { id: "cert5", name: "ESIC Licensed", icon: "fas fa-cogs" },
   ];
 
   return (
     <section className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold text-[var(--primary-800)]">Our Certifications & Affiliations</h2>
+          <h2 className="text-2xl font-bold text-[var(--primary-800)]">Our Certifications & Compliance</h2>
         </div>
         
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
