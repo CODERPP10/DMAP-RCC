@@ -15,7 +15,7 @@ const Certifications = () => {
         </div>
         
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-          {certifications.map((cert) => (
+          {certifications.map((cert) => ( 
             <div 
               key={cert.id}
               className="certification-logo w-32 h-20 bg-white rounded-md shadow-sm flex items-center justify-center p-3"
