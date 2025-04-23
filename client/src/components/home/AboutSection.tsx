@@ -7,11 +7,14 @@ const AboutSection = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="order-2 lg:order-1">
-            <h2 className="text-3xl font-bold text-[var(--primary-800)] mb-4">About DMAP Construction</h2>
+            <h2 className="text-3xl font-bold text-[var(--primary-800)] mb-4">About DMAP Retrofit Construction Company</h2>
             <p className="text-gray-600 mb-6">
-              For the past 5 years, DMAP Construction has been providing specialized retrofitting and 
-              reconstruction services for government buildings and infrastructure. Our team brings together 
-              technical expertise, industry knowledge, and a commitment to excellence.
+              We are a construction firm of experienced professionals in strengthening and restoring built 
+              environments across India. Our expertise spans retrofitting of public buildings, residential and 
+              commercial construction, institutional and industrial civil works, and infrastructure projects. 
+              We work closely with certified contractors and experienced professionals to ensure 
+              safety, compliance, and timely delivery.
+
             </p>
             
             <div className="mb-6">
@@ -53,7 +56,7 @@ const AboutSection = () => {
                 loading="lazy"
               />
               <div className="absolute -bottom-5 -left-5 bg-[var(--primary-800)] rounded-lg shadow-lg px-6 py-4 text-white">
-                <p className="font-semibold">5+ Years of Excellence</p>
+                <p className="font-semibold">Promise of Excellence</p>
               </div>
             </div>
           </div>

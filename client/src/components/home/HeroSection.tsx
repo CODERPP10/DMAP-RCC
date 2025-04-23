@@ -15,7 +15,7 @@ const HeroSection = () => {
       
       {/* Hero Content */}
       <div className="container mx-auto px-6 text-center text-white relative z-[2]">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">Government Building Retrofit Specialists</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">Structural Rehabilitation & Retrofit Specialists</h1>
         <p className="text-xl mb-8 max-w-3xl mx-auto">
           Professional retrofitting and reconstruction solutions with technical precision and compliance expertise
         </p>
