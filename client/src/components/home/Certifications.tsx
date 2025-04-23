@@ -1,10 +1,10 @@
 const Certifications = () => {
   const certifications = [
+    { id: "cert3", name: "MSME Registered", icon: "fas fa-building" },
     { id: "cert1", name: "GST Compliant", icon: "fas fa-certificate" },
     { id: "cert2", name: "EPF Compliant", icon: "fas fa-hard-hat" },
-    { id: "cert3", name: "MSME Registered", icon: "fas fa-building" },
-    { id: "cert4", name: "Safety Focused", icon: "fas fa-leaf" },
     { id: "cert5", name: "ESIC Licensed", icon: "fas fa-cogs" },
+    { id: "cert4", name: "Safety Focused", icon: "fas fa-check-circle" },
   ];
 
   return (
