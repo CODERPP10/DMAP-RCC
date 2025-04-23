@@ -18,11 +18,11 @@ const Certifications = () => {
           {certifications.map((cert) => ( 
             <div 
               key={cert.id}
-              className="certification-logo w-32 h-20 bg-white rounded-md shadow-sm flex items-center justify-center p-3"
+              className="certification-logo w-32 h-20 bg-white rounded-md shadow-sm flex items-center justify-center p-3 hover:shadow-md transition-shadow"
             >
-              <div className="text-gray-400 text-center">
-                <i className={`${cert.icon} text-2xl mb-1`}></i>
-                <p className="text-xs">{cert.name}</p>
+              <div className=" text-center">
+                <i className={`${cert.icon} text-2xl mb-1 text-gray-300`}></i>
+                <p className="text-xs text-gray-600">{cert.name}</p>
               </div>
             </div>
           ))}
