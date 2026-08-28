@@ -23,11 +23,14 @@ const About = () => {
             <div>
               <h2 className="text-3xl font-bold text-[var(--primary-800)] mb-4">Company Overview</h2>
               <p className="text-gray-600 mb-6">
-                For the past 5 years, DMAP Construction has been providing specialized retrofitting 
-                and reconstruction services for government buildings and infrastructure throughout the region. 
-                Our company was founded with a vision to deliver technically excellent construction services 
-                with a focus on safety, compliance, and quality.
+
+                We are a construction firm of experienced professionals in strengthening and restoring built 
+                environments across India. Our expertise spans retrofitting of public buildings, residential 
+                and commercial construction, institutional and industrial civil works, and infrastructure projects.
+                We work closely with certified contractors and experienced professionals to ensure safety, 
+                compliance, and timely delivery.
               </p>
+
               <p className="text-gray-600 mb-6">
                 We operate as a small but highly effective team, bringing together the best technical contractors 
                 and specialists for each project. Our management team focuses on ensuring seamless execution and 
@@ -46,7 +49,7 @@ const About = () => {
                 loading="lazy"
               />
               <div className="absolute -bottom-5 -left-5 bg-[var(--primary-800)] rounded-lg shadow-lg px-6 py-4 text-white">
-                <p className="font-semibold">5+ Years of Excellence</p>
+                <p className="font-semibold">Promise of Excellence</p>
               </div>
             </div>
           </div>
