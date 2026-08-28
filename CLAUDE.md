@@ -2,28 +2,29 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-Marketing website for DMAP Retrofit Construction Company. Vite/React SPA + a thin Express server in one process on **port 5000** (only port). Originally scaffolded on Replit; being stripped down (see "Refactor").
+Marketing website for DMAP Retrofit Construction Company. Vite/React SPA + a thin Express server in one process on **port 5000** (only port). Originally scaffolded on Replit; being stripped down (see "Refactor"). Runtime: **Bun**.
 
 ## Commands
 
-- `npm run dev` — run app (Express + Vite middleware) on port 5000; loads `.env`
-- `npm run build` — client → `dist/public`, server bundle → `dist/index.js`
-- `npm run check` — TS typecheck (no lint, no tests)
-- `npm run start` — runs the build; inline `NODE_ENV=` breaks on Windows (fine in Docker/Linux)
+- `bun run dev` — run app (Express + Vite middleware) on port 5000; Bun auto-loads `.env`
+- `bun run build` — client → `dist/public`, server bundle → `dist/index.js` (esbuild)
+- `bun run check` — TS typecheck (`tsc`; no lint, no tests)
+- `bun run start` — run the build; inline `NODE_ENV=` breaks on cmd/PowerShell (fine in git-bash / Docker)
 - `.env` (gitignored) holds `PORT` and `MAIL_USER`/`MAIL_PASS`/`MAIL_TO`; see `.env.example`
 
 ## Architecture
 
-- Aliases: `@/*`→`client/src/*`, `@shared/*`→`shared/*`, `@assets/*`→`attached_assets/*`
+- Aliases: `@/*`→`client/src/*`, `@shared/*`→`shared/*`
 - **All page content is static** in `client/src/data/*.ts` (services, projects, blog,
-  testimonials). Other sections are hardcoded JSX. No database.
+  testimonials, certifications). Other sections are hardcoded JSX. No database.
 - `server/routes.ts` — the only endpoint is `POST /api/contact` (zod-validated via
   `shared/contact.ts`, emails via Gmail SMTP / nodemailer, honeypot field) plus
   `/brochure.pdf`. Unknown `/api/*` → JSON 404. Registered before the Vite catch-all.
 - Client: Wouter routing (`App.tsx`), react-hook-form + `@shared/contact` for the form
-  (`components/ContactForm.tsx`, used by home + `/contact`), shadcn/ui in `components/ui/`,
-  Tailwind theme from `theme.json` (via `@replit/vite-plugin-shadcn-theme-json`),
-  extra color vars injected in `main.tsx`.
+  (`components/ContactForm.tsx`, used by home + `/contact`). Only 3 shadcn/ui files
+  remain (`ui/card`, `ui/toast`, `ui/toaster`). shadcn design tokens are inlined in
+  `client/src/index.css` (`:root` + inert `.dark`); extra `--primary-N`/`--secondary-N`
+  color vars are injected in `main.tsx`. `vite.config.ts` = `react()` only.
 
 ## Refactor
 
@@ -32,11 +33,12 @@ Plan: `~/.claude/plans/i-want-to-refactor-smooth-shell.md`. Backup: tag `pre-ref
 
 - [x] Run on localhost (Windows) — `chore/localhost-bringup`
 - [x] Phase 1: drop DB; static `/services` + `/projects`; `/api/contact` email — `refactor/phase1-drop-db`
-- [ ] Phase 2: switch to Bun; prune unused shadcn/ui + radix deps; inline theme.json, drop @replit/* plugins
+- [x] Phase 2: Bun runtime; prune shadcn/ui + deps (−69 pkgs total); inline theme.json; drop `@replit/*` plugins — `refactor/phase2-bun-lean`
 - [ ] Phase 3: multi-stage Dockerfile + compose + Caddy
 - [ ] Phase 4: deploy + WAF
 
 Known: `client/src/data/*.ts` rich fields are placeholder copy pending the real content JSON.
+Optional later: `framer-motion` (~single use in `ServiceCard`), JS bundle still ~520 kB.
 
 ## Workflows
 
