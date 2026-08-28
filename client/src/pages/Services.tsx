@@ -1,56 +1,16 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
-import { useQuery } from "@tanstack/react-query";
 import ServiceCard from "@/components/services/ServiceCard";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { services } from "@/data/services";
 
 /**
- * Services page component
- * Displays all available services with expandable cards
+ * Services page — renders the static service list from `@/data/services`.
  */
 const Services = () => {
-  // State to track which service card is expanded
-  const [expandedService, setExpandedService] = useState<number | null>(null);
+  const [expandedService, setExpandedService] = useState<string | null>(null);
 
-  // Define response type
-  interface ApiResponse {
-    success: boolean;
-    data: Array<{
-      id: number;
-      title: string;
-      shortDescription?: string;
-      fullDescription?: string;
-      imageUrl?: string;
-      benefits?: string[];
-    }>;
-  }
-
-  // Fetch services from API
-  const { data, isLoading, error } = useQuery<ApiResponse>({
-    queryKey: ['/api/services'],
-    refetchOnWindowFocus: false
-  });
-
-  // Handle service card expansion toggle
-  const handleServiceExpand = (id: number) => {
-    if (expandedService === id) {
-      setExpandedService(null);
-    } else {
-      setExpandedService(id);
-    }
-  };
-
-  // Format services for the ServiceCard component
-  const formatServicesForUI = (serviceData: any) => {
-    return serviceData.map((service: any) => ({
-      id: service.id,
-      title: service.title,
-      shortDescription: service.shortDescription || `Professional ${service.title.toLowerCase()} services`,
-      fullDescription: service.fullDescription || `Our ${service.title.toLowerCase()} services are delivered with the highest standards of quality and safety.`,
-      imageUrl: service.imageUrl || "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3",
-      benefits: service.benefits || ["Quality assurance", "Expert technical team", "Cost-effective solutions"]
-    }));
+  const handleServiceExpand = (id: string) => {
+    setExpandedService((current) => (current === id ? null : id));
   };
 
   return (
@@ -69,44 +29,16 @@ const Services = () => {
             </p>
           </div>
 
-          {/* Loading state */}
-          {isLoading && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-              {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div key={i} className="border border-gray-200 rounded-lg p-6">
-                  <Skeleton className="h-8 w-3/4 mb-4" />
-                  <Skeleton className="h-24 w-full mb-4" />
-                  <Skeleton className="h-4 w-full mb-2" />
-                  <Skeleton className="h-4 w-5/6 mb-2" />
-                  <Skeleton className="h-4 w-4/6" />
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Error state */}
-          {error && (
-            <Alert variant="destructive" className="mb-8">
-              <AlertTitle>Error</AlertTitle>
-              <AlertDescription>
-                There was a problem loading the services. Please try again later.
-              </AlertDescription>
-            </Alert>
-          )}
-
-          {/* Loaded state */}
-          {data && data.data && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-              {formatServicesForUI(data.data).map((service: any) => (
-                <ServiceCard 
-                  key={service.id}
-                  service={service}
-                  isExpanded={expandedService === service.id}
-                  onExpand={() => handleServiceExpand(service.id)}
-                />
-              ))}
-            </div>
-          )}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {services.map((service) => (
+              <ServiceCard
+                key={service.id}
+                service={service}
+                isExpanded={expandedService === service.id}
+                onExpand={() => handleServiceExpand(service.id)}
+              />
+            ))}
+          </div>
 
           <div className="bg-white rounded-lg shadow-md p-8 mb-16">
             <h2 className="text-3xl font-bold text-[var(--primary-800)] mb-6 text-center">Our Service Approach</h2>
@@ -117,32 +49,32 @@ const Services = () => {
                 </div>
                 <h3 className="text-xl font-semibold text-[var(--primary-800)] mb-3 text-center">Assessment</h3>
                 <p className="text-gray-600">
-                  Every project begins with a thorough assessment of the existing structure, identifying areas 
-                  that require retrofitting, improvement, or reconstruction. Our technical team evaluates 
+                  Every project begins with a thorough assessment of the existing structure, identifying areas
+                  that require retrofitting, improvement, or reconstruction. Our technical team evaluates
                   structural integrity, compliance issues, and performance metrics.
                 </p>
               </div>
-              
+
               <div className="border border-gray-200 rounded-lg p-6">
                 <div className="text-[var(--secondary-600)] text-4xl mb-4 text-center">
                   <i className="fas fa-drafting-compass"></i>
                 </div>
                 <h3 className="text-xl font-semibold text-[var(--primary-800)] mb-3 text-center">Design & Planning</h3>
                 <p className="text-gray-600">
-                  Based on the assessment findings, we develop detailed retrofit designs and implementation plans. 
-                  Our solutions prioritize structural safety, energy efficiency, and regulatory compliance while 
+                  Based on the assessment findings, we develop detailed retrofit designs and implementation plans.
+                  Our solutions prioritize structural safety, energy efficiency, and regulatory compliance while
                   considering budget constraints and operational needs.
                 </p>
               </div>
-              
+
               <div className="border border-gray-200 rounded-lg p-6">
                 <div className="text-[var(--secondary-600)] text-4xl mb-4 text-center">
                   <i className="fas fa-hard-hat"></i>
                 </div>
                 <h3 className="text-xl font-semibold text-[var(--primary-800)] mb-3 text-center">Implementation</h3>
                 <p className="text-gray-600">
-                  Our experienced team executes the retrofitting work with precision and attention to detail. 
-                  We manage all aspects of the project, from securing permits to coordinating specialized contractors, 
+                  Our experienced team executes the retrofitting work with precision and attention to detail.
+                  We manage all aspects of the project, from securing permits to coordinating specialized contractors,
                   ensuring minimal disruption to building operations.
                 </p>
               </div>
@@ -154,13 +86,13 @@ const Services = () => {
               <div className="md:w-2/3 mb-6 md:mb-0 md:pr-8">
                 <h2 className="text-2xl font-bold mb-4">Need a specialized service?</h2>
                 <p className="opacity-90 mb-4">
-                  We understand that government retrofitting projects often have unique requirements. Contact us to 
+                  We understand that government retrofitting projects often have unique requirements. Contact us to
                   discuss your specific needs and how we can provide tailored solutions.
                 </p>
               </div>
               <div>
-                <a 
-                  href="/contact" 
+                <a
+                  href="/contact"
                   className="bg-white text-[var(--primary-800)] hover:bg-gray-100 py-3 px-6 rounded-md font-semibold transition inline-block"
                 >
                   Request a Consultation

@@ -1,80 +1,154 @@
-export const services = [
+// Canonical service list. Names are DMAP's real services (from the old
+// attached_assets/services.json). shortDescription / fullDescription / benefits
+// are placeholder copy — replace with the real content JSON when it arrives.
+
+export interface Service {
+  id: string;
+  title: string;
+  shortDescription: string;
+  fullDescription: string;
+  imageUrl: string;
+  benefits: string[];
+}
+
+const IMG = {
+  structural:
+    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80",
+  seismic:
+    "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1200&q=80",
+  concrete:
+    "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80",
+  water:
+    "https://images.unsplash.com/photo-1590333748338-d629e4564ad9?auto=format&fit=crop&w=1200&q=80",
+  steel:
+    "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80",
+  civil:
+    "https://images.unsplash.com/photo-1503708928676-1cb796a0891e?auto=format&fit=crop&w=1200&q=80",
+  infra:
+    "https://images.unsplash.com/photo-1542621334-a254cf47733d?auto=format&fit=crop&w=1200&q=80",
+  consult:
+    "https://images.unsplash.com/photo-1507208773393-40d9fc670acf?auto=format&fit=crop&w=1200&q=80",
+};
+
+export const services: Service[] = [
   {
-    id: "structural-retrofitting",
-    title: "Structural Retrofitting",
-    shortDescription: "Comprehensive structural upgrades to improve building resilience and extend the life of government facilities.",
-    fullDescription: "Our structural retrofitting services address the fundamental framework of government buildings, strengthening load-bearing elements and reinforcing critical structural components. We conduct detailed assessments to identify vulnerabilities and implement targeted solutions that enhance structural integrity while minimizing disruption to building operations.",
-    imageUrl: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
+    id: "seismic-retrofitting",
+    title: "Seismic Retrofitting",
+    shortDescription:
+      "Strengthening existing structures to withstand seismic loads and meet current safety codes.",
+    fullDescription:
+      "We assess a structure's response to earthquake forces and implement targeted reinforcement — jacketing, bracing, fibre wrapping and connection upgrades — to improve ductility and load paths while keeping the building in use.",
+    imageUrl: IMG.seismic,
     benefits: [
-      "Increased structural integrity and building longevity",
-      "Enhanced resistance to environmental stresses",
-      "Compliance with current building codes and standards",
-      "Minimal disruption to facility operations during implementation"
-    ]
+      "Improved life safety during seismic events",
+      "Compliance with current IS codes",
+      "Minimal disruption to occupants",
+      "Extended service life of the structure",
+    ],
   },
   {
-    id: "seismic-upgrades",
-    title: "Seismic Upgrades",
-    shortDescription: "Implementation of advanced seismic protection systems to ensure building safety during earthquakes.",
-    fullDescription: "Our seismic upgrade services focus on enhancing a building's ability to withstand earthquake forces. We utilize modern engineering techniques to analyze structural behavior under seismic loads and implement comprehensive solutions that may include base isolation, damping systems, and strategic reinforcement of critical structural elements.",
-    imageUrl: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
+    id: "rcc-jacketing-strengthening",
+    title: "RCC Jacketing & Structural Strengthening",
+    shortDescription:
+      "Reinforced concrete jacketing of beams, columns and slabs to restore and increase load capacity.",
+    fullDescription:
+      "Deteriorated or under-strength members are enlarged with additional reinforcement and high-grade concrete or micro-concrete, bonded to the existing section to act compositely and carry higher design loads.",
+    imageUrl: IMG.structural,
     benefits: [
-      "Enhanced safety for building occupants during seismic events",
-      "Reduced potential for structural damage and associated costs",
-      "Compliance with current seismic codes and regulations",
-      "Preservation of critical government functions following an earthquake"
-    ]
+      "Restored and increased load capacity",
+      "Arrests further deterioration",
+      "Cost-effective vs. reconstruction",
+      "Proven, code-recognised technique",
+    ],
   },
   {
-    id: "energy-efficiency",
-    title: "Energy Efficiency Upgrades",
-    shortDescription: "Modernization of building systems to reduce energy consumption and comply with sustainability standards.",
-    fullDescription: "Our energy efficiency retrofits deliver significant improvements in building performance while reducing operational costs. We start with a comprehensive energy audit to identify inefficiencies, then implement targeted solutions that may include HVAC modernization, building envelope improvements, lighting upgrades, and integration of renewable energy systems.",
-    imageUrl: "https://images.unsplash.com/photo-1622113651863-5c47b805d173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
+    id: "concrete-crack-injection-repairs",
+    title: "Concrete Crack Injection & Repairs",
+    shortDescription:
+      "Epoxy and polyurethane injection plus patch repairs to seal cracks and stop water ingress.",
+    fullDescription:
+      "Structural cracks are pressure-injected with epoxy to restore monolithic behaviour; non-structural and active cracks are treated with flexible polyurethane. Spalled cover is reinstated with polymer-modified repair mortars.",
+    imageUrl: IMG.concrete,
     benefits: [
-      "Reduced energy consumption and operational costs",
-      "Smaller carbon footprint and environmental impact",
-      "Compliance with energy efficiency mandates and sustainability goals",
-      "Improved indoor environmental quality and occupant comfort"
-    ]
+      "Restores structural continuity",
+      "Stops corrosion-driving water ingress",
+      "Fast, low-impact application",
+      "Long-term durability",
+    ],
   },
   {
-    id: "ada-compliance",
-    title: "ADA Compliance Updates",
-    shortDescription: "Comprehensive modifications to ensure buildings meet accessibility requirements and provide equal access for all.",
-    fullDescription: "Our ADA compliance services ensure government facilities provide equal access for individuals with disabilities. We conduct thorough assessments of existing conditions and implement strategic modifications to eliminate barriers. Solutions may include entrance improvements, restroom renovations, path of travel enhancements, and installation of assistive technologies.",
-    imageUrl: "https://images.unsplash.com/photo-1607766578617-cf33ebc5e9ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80",
+    id: "waterproofing-solutions",
+    title: "Waterproofing Solutions",
+    shortDescription:
+      "Terrace, basement, wet-area and facade waterproofing systems for lasting protection.",
+    fullDescription:
+      "We specify and apply membrane, crystalline and coating-based systems matched to the exposure — terraces, sunken slabs, water tanks, retaining walls and external facades — with detailing at joints and penetrations.",
+    imageUrl: IMG.water,
     benefits: [
-      "Compliance with ADA requirements and accessibility standards",
-      "Equal access for all individuals regardless of physical ability",
-      "Reduced risk of ADA-related complaints and litigation",
-      "Demonstrated commitment to inclusivity in public facilities"
-    ]
+      "Protects reinforcement from corrosion",
+      "Prevents leakage and dampness",
+      "System matched to each exposure",
+      "Warranty-backed application",
+    ],
   },
   {
-    id: "building-security",
-    title: "Building Security Enhancements",
-    shortDescription: "Integration of modern security systems and physical hardening to protect government facilities and occupants.",
-    fullDescription: "Our building security enhancement services address physical security vulnerabilities in government buildings. We employ a layered approach that may include access control systems, surveillance infrastructure, ballistic-resistant materials, and structural reinforcement. All solutions are designed to be both effective and unobtrusive.",
-    imageUrl: "https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1734&q=80",
+    id: "structural-steel-fabrication",
+    title: "Structural Steel Fabrication",
+    shortDescription:
+      "Design, fabrication and erection of structural steel for new works and strengthening.",
+    fullDescription:
+      "Fabricated steel framing, platforms, staircases and strengthening elements are produced to drawing and welded/bolted on site, with surface protection suited to the environment.",
+    imageUrl: IMG.steel,
     benefits: [
-      "Enhanced protection for building occupants and assets",
-      "Integration of modern security technologies with building systems",
-      "Balanced approach to security that maintains aesthetic quality",
-      "Compliance with government security standards and requirements"
-    ]
+      "Fast on-site erection",
+      "High strength-to-weight ratio",
+      "Shop-quality fabrication",
+      "Adaptable to tight site conditions",
+    ],
   },
   {
-    id: "mechanical-system-upgrades",
-    title: "Mechanical System Upgrades",
-    shortDescription: "Modernization of HVAC, plumbing, and electrical systems to improve efficiency, reliability, and building performance.",
-    fullDescription: "Our mechanical system upgrade services address the core operational infrastructure within government buildings. We evaluate existing systems, identify deficiencies, and implement targeted improvements that enhance performance, increase reliability, and reduce long-term maintenance costs. Solutions are designed to be implemented with minimal disruption to building operations.",
-    imageUrl: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1738&q=80",
+    id: "civil-works",
+    title: "Residential, Commercial & Industrial Civil Works",
+    shortDescription:
+      "General civil construction and renovation across residential, commercial and industrial projects.",
+    fullDescription:
+      "From structural shells and RCC works to finishes and services coordination, we deliver civil packages for buildings and plants with a focus on quality control and programme certainty.",
+    imageUrl: IMG.civil,
     benefits: [
-      "Increased system reliability and reduced maintenance costs",
-      "Improved indoor environmental quality and occupant comfort",
-      "Enhanced energy efficiency and operational performance",
-      "Extended service life of building mechanical infrastructure"
-    ]
-  }
+      "Single accountable contractor",
+      "Documented quality control",
+      "Programme and cost certainty",
+      "Experienced technical supervision",
+    ],
+  },
+  {
+    id: "infrastructure-project-execution",
+    title: "Infrastructure Project Execution",
+    shortDescription:
+      "Execution of infrastructure and utility-structure works for public and private clients.",
+    fullDescription:
+      "We execute infrastructure scopes — utility structures, ancillary buildings, repairs and upgrades — with the compliance, documentation and safety systems expected on government and institutional contracts.",
+    imageUrl: IMG.infra,
+    benefits: [
+      "Compliance-ready documentation",
+      "Safety-focused execution",
+      "Coordination with authorities",
+      "Reliable delivery",
+    ],
+  },
+  {
+    id: "technical-consultation-supervision",
+    title: "On-site Technical Consultation & Supervision",
+    shortDescription:
+      "Condition assessment, repair methodology and on-site supervision by experienced engineers.",
+    fullDescription:
+      "We provide structural condition surveys, non-destructive testing interpretation, repair specifications and full-time or periodic site supervision to ensure work is executed to specification.",
+    imageUrl: IMG.consult,
+    benefits: [
+      "Independent technical assurance",
+      "Clear repair methodology",
+      "Quality verified on site",
+      "Reduced rework and risk",
+    ],
+  },
 ];
