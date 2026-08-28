@@ -7,7 +7,7 @@ const AboutSection = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="order-2 lg:order-1">
-            <h2 className="text-3xl font-bold text-[var(--primary-800)] mb-4">About DMAP Retrofit Construction Company</h2>
+            <h2 className="text-3xl font-bold text-[var(--primary-800)] mb-4">About DMAP Retrofit Constructions Company</h2>
             <p className="text-gray-600 mb-6">
               We are a construction firm of experienced professionals in strengthening and restoring built 
               environments across India. Our expertise spans retrofitting of public buildings, residential and 

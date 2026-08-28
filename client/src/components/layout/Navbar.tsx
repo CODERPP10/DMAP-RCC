@@ -27,7 +27,7 @@ const Navbar = () => {
               <span className="text-[var(--secondary-600)] mr-1">
                 <Building className="inline-block" />
               </span>
-              DMAP Construction
+              DMAP Retrofit Constructions Company
             </Link>
           </div>
           
