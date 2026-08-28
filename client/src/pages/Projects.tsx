@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "wouter";
 import ProjectCard from "@/components/projects/ProjectCard";
 import { ongoingProjects, completedProjects } from "@/data/projects";
 
@@ -123,12 +124,12 @@ const Projects = () => {
           </div>
 
           <div className="text-center">
-            <a
+            <Link
               href="/contact"
               className="bg-[var(--secondary-600)] hover:bg-[var(--secondary-700)] text-white py-3 px-8 rounded-md font-medium transition inline-block"
             >
               Discuss Your Project With Us
-            </a>
+            </Link>
           </div>
         </div>
       </div>

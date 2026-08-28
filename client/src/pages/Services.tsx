@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "wouter";
 import ServiceCard from "@/components/services/ServiceCard";
 import { services } from "@/data/services";
 
@@ -91,12 +92,12 @@ const Services = () => {
                 </p>
               </div>
               <div>
-                <a
+                <Link
                   href="/contact"
                   className="bg-white text-[var(--primary-800)] hover:bg-gray-100 py-3 px-6 rounded-md font-semibold transition inline-block"
                 >
                   Request a Consultation
-                </a>
+                </Link>
               </div>
             </div>
           </div>
