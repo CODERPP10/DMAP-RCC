@@ -1,0 +1,14 @@
+node_modules
+dist
+.git
+.env
+.env.local
+.claude
+*.tar.gz
+docs
+attached_assets
+*.md
+Dockerfile
+.dockerignore
+docker-compose.yml
+Caddyfile
