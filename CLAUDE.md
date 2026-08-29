@@ -10,6 +10,7 @@ Marketing website for DMAP Retrofit Construction Company. Vite/React SPA + a thi
 - `bun run build` — client → `dist/public`, server bundle → `dist/index.js` (esbuild)
 - `bun run check` — TS typecheck (`tsc`; no lint, no tests)
 - `bun run start` — run the build; inline `NODE_ENV=` breaks on cmd/PowerShell (fine in git-bash / Docker)
+- `docker compose up -d` — full stack: `app` (internal only) behind `caddy` (:80/:443). Set `SITE_ADDRESS` in `.env` (`localhost` default, or a real domain for Let's Encrypt).
 - `.env` (gitignored) holds `PORT` and `MAIL_USER`/`MAIL_PASS`/`MAIL_TO`; see `.env.example`
 
 ## Architecture
@@ -25,6 +26,9 @@ Marketing website for DMAP Retrofit Construction Company. Vite/React SPA + a thi
   remain (`ui/card`, `ui/toast`, `ui/toaster`). shadcn design tokens are inlined in
   `client/src/index.css` (`:root` + inert `.dark`); extra `--primary-N`/`--secondary-N`
   color vars are injected in `main.tsx`. `vite.config.ts` = `react()` only.
+- `server/index.ts` serves the SPA via `serveStatic` (`server/static.ts`) in production;
+  in dev it `await import("./vite")` for the Vite middleware, so the prod esbuild bundle
+  (built with `--splitting`, emits a dev-only `dist/vite-*.js` chunk) has no `vite` dep.
 
 ## Refactor
 
@@ -34,11 +38,13 @@ Plan: `~/.claude/plans/i-want-to-refactor-smooth-shell.md`. Backup: tag `pre-ref
 - [x] Run on localhost (Windows) — `chore/localhost-bringup`
 - [x] Phase 1: drop DB; static `/services` + `/projects`; `/api/contact` email — `refactor/phase1-drop-db`
 - [x] Phase 2: Bun runtime; prune shadcn/ui + deps (−69 pkgs total); inline theme.json; drop `@replit/*` plugins — `refactor/phase2-bun-lean`
-- [ ] Phase 3: multi-stage Dockerfile + compose + Caddy
+- [x] Phase 3: multi-stage Dockerfile + `docker-compose.yml` + `Caddyfile` — `refactor/phase3-docker`
 - [ ] Phase 4: deploy + WAF
 
 Known: `client/src/data/*.ts` rich fields are placeholder copy pending the real content JSON.
 Optional later: `framer-motion` (~single use in `ServiceCard`), JS bundle still ~520 kB.
+Docker image ~347 MB — client-only libs (react etc.) are in `dependencies` so they land
+in the runtime stage; move them to `devDependencies` to slim it.
 
 ## Workflows
 
