@@ -2,8 +2,9 @@ node_modules
 dist
 .env
 .env.local
+.dev.vars
 .DS_Store
-server/public
+.wrangler
 vite.config.ts.*
 *.tar.gz
 # agent worktrees / local claude state
