@@ -1,0 +1,3 @@
+# SPA fallback: unknown paths render index.html so Wouter can route client-side.
+# Real static files and Pages Functions (/api/*) are matched before this rule.
+/*  /index.html  200

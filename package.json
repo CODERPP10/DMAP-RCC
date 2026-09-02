@@ -4,10 +4,10 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "dev": "bun --bun server/index.ts",
-    "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
-    "start": "NODE_ENV=production bun dist/index.js",
-    "check": "tsc"
+    "dev": "vite",
+    "preview": "vite build && wrangler pages dev",
+    "build": "vite build",
+    "check": "tsc && tsc -p functions/tsconfig.json"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -15,11 +15,8 @@
     "@types/react-helmet": "^6.1.11",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "express": "^4.21.2",
     "framer-motion": "^11.18.2",
     "lucide-react": "^0.453.0",
-    "nanoid": "^6.0.1",
-    "nodemailer": "^6.9.16",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
@@ -30,17 +27,16 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/express": "4.17.21",
+    "@cloudflare/workers-types": "^5.20260902.1",
     "@types/node": "20.16.11",
-    "@types/nodemailer": "^6.4.16",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.2",
     "autoprefixer": "^10.4.20",
-    "esbuild": "^0.25.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",
     "typescript": "5.6.3",
-    "vite": "^5.4.14"
+    "vite": "^5.4.14",
+    "wrangler": "^4.128.0"
   }
 }

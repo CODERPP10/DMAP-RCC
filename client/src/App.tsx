@@ -1,4 +1,5 @@
-import { Switch, Route } from "wouter";
+import { useEffect } from "react";
+import { Switch, Route, useLocation } from "wouter";
 import { Toaster } from "@/components/ui/toaster";
 import NotFound from "@/pages/not-found";
 import Navbar from "@/components/layout/Navbar";
@@ -9,6 +10,21 @@ import Services from "@/pages/Services";
 import Projects from "@/pages/Projects";
 import Blog from "@/pages/Blog";
 import Contact from "@/pages/Contact";
+
+/**
+ * Reset scroll to the top on every route change. Without this, navigating
+ * (e.g. from a footer link) keeps the previous scroll offset, so the new page
+ * appears "not to have loaded". Skips when the URL carries a hash anchor.
+ */
+function ScrollToTop() {
+  const [pathname] = useLocation();
+  useEffect(() => {
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname]);
+  return null;
+}
 
 function Router() {
   return (
@@ -27,6 +43,7 @@ function Router() {
 function App() {
   return (
     <>
+      <ScrollToTop />
       <div className="flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-grow">
