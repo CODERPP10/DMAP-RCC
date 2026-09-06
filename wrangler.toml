@@ -1,0 +1,6 @@
+# Local dev / build-output config for `wrangler pages dev`. The production Pages
+# project is configured in the Cloudflare dashboard (git integration); env vars
+# and secrets live there, not here.
+name = "dmap-rcc"
+compatibility_date = "2025-09-02"
+pages_build_output_dir = "dist/public"

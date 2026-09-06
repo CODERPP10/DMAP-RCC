@@ -1,0 +1,4 @@
+# Force the brochure to download with a friendly filename (the old Express route
+# set this via Content-Disposition).
+/brochure.pdf
+  Content-Disposition: attachment; filename="DMAP-Construction-Brochure.pdf"

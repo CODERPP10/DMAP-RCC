@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { services } from "@/data/services";
 
 const Footer = () => {
   return (
@@ -38,11 +39,13 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Services</h3>
             <ul className="space-y-2">
-              <li><Link href="/services" className="text-gray-400 hover:text-white transition">Structural Retrofitting</Link></li>
-              <li><Link href="/services" className="text-gray-400 hover:text-white transition">Seismic Upgrades</Link></li>
-              <li><Link href="/services" className="text-gray-400 hover:text-white transition">Energy Efficiency</Link></li>
-              <li><Link href="/services" className="text-gray-400 hover:text-white transition">ADA Compliance</Link></li>
-              <li><Link href="/services" className="text-gray-400 hover:text-white transition">Building Security</Link></li>
+              {services.slice(0, 5).map((service) => (
+                <li key={service.id}>
+                  <Link href="/services" className="text-gray-400 hover:text-white transition">
+                    {service.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           
